@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="OK">
+<meta name="description" content="前言OkHttp简介： OkHttp是一个网络通信框架，支持HTTP和HTTP/2的客户端。在OkHttp出现，Android平台上的Http库一般使用HttpClient或者HttpUrlConnection，这两者各自的特点和缺点，想必大家都已经都十分的清楚。具体表现为：
+1234567891011(1)在 Froyo(2.2) 之前，HttpURLConnection 有个重大 Bug，调用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OkHttp源码分析(一)">
 <meta property="og:url" content="http://yoursite.com/2017/02/07/OkHttp源码分析-一/index.html">
 <meta property="og:site_name" content="shuixingge">
-<meta property="og:description" content="OK">
-<meta property="og:updated_time" content="2017-02-07T12:02:27.000Z">
+<meta property="og:description" content="前言OkHttp简介： OkHttp是一个网络通信框架，支持HTTP和HTTP/2的客户端。在OkHttp出现，Android平台上的Http库一般使用HttpClient或者HttpUrlConnection，这两者各自的特点和缺点，想必大家都已经都十分的清楚。具体表现为：
+1234567891011(1)在 Froyo(2.2) 之前，HttpURLConnection 有个重大 Bug，调用">
+<meta property="og:image" content="https://raw.githubusercontent.com/shuixingge/MarkDownPic/master/okhttp/okhttp_uml.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shuixingge/MarkDownPic/master/okhttp/okhttp_full_process.png">
+<meta property="og:updated_time" content="2017-02-13T13:26:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OkHttp源码分析(一)">
-<meta name="twitter:description" content="OK">
+<meta name="twitter:description" content="前言OkHttp简介： OkHttp是一个网络通信框架，支持HTTP和HTTP/2的客户端。在OkHttp出现，Android平台上的Http库一般使用HttpClient或者HttpUrlConnection，这两者各自的特点和缺点，想必大家都已经都十分的清楚。具体表现为：
+1234567891011(1)在 Froyo(2.2) 之前，HttpURLConnection 有个重大 Bug，调用">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shuixingge/MarkDownPic/master/okhttp/okhttp_uml.png">
 
 
 
@@ -315,8 +321,33 @@
       
 
       
-        <p>OK</p>
-
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>OkHttp简介：</strong> OkHttp是一个网络通信框架，支持HTTP和HTTP/2的客户端。在OkHttp出现，Android平台上的Http库一般使用HttpClient或者HttpUrlConnection，这两者各自的特点和缺点，想必大家都已经都十分的清楚。具体表现为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">(1)在 Froyo(2.2) 之前，HttpURLConnection 有个重大 Bug，</div><div class="line">调用 close() 函数会影响连接池，导致连接复用失效，所以在 Froyo </div><div class="line">之前使用 HttpURLConnection 需要关闭 keepAlive。</div><div class="line"></div><div class="line">(2)另外在 Gingerbread(2.3) HttpURLConnection 默认开启了</div><div class="line"> gzip 压缩，提高了 HTTPS 的性能，Ice Cream Sandwich(4.0) </div><div class="line"> HttpURLConnection 支持了请求结果缓存。</div><div class="line"></div><div class="line">(3)再加上 HttpURLConnection 本身 API 相对简单，所以对 </div><div class="line">Android 来说，在 2.3 之后建议使用 HttpURLConnection，</div><div class="line">之前建议使用 AndroidHttpClient。</div></pre></td></tr></table></figure>
+<p><strong>OkHttp特点与优势：</strong> </p>
+<ul>
+<li>支持同步和异步请求。同步请求会阻塞当前的线程</li>
+<li>支持流式传输，所以支持大文件的下载</li>
+<li>支持Http 2.0和Http 1.x，对于Http 2.0，同一个服务器的所有请求共用一个Socket连接，而Http 1.x通过连接池复用来实现连接复用。</li>
+<li>当服务器配置了多个IP地址，当第一个IP连接失败的时候，OkHttp会自动尝试下一个IP。</li>
+<li>支持gzip压缩</li>
+<li>通过interceptor来实现对请求的各种处理</li>
+</ul>
+<p><strong>OkHttp基本结构和原理</strong></p>
+<ul>
+<li>OkHttp基本类图<br><img src="https://raw.githubusercontent.com/shuixingge/MarkDownPic/master/okhttp/okhttp_uml.png" alt="image"> </li>
+</ul>
+<p>比较主要的核心类是：OkHttpClient,Request,RealCall,Interceptor接口，ConnectionPool等。</p>
+<ul>
+<li>OkHttp请求流程图<br><img src="https://raw.githubusercontent.com/shuixingge/MarkDownPic/master/okhttp/okhttp_full_process.png" alt="image"></li>
+</ul>
+<p>可以看到OkHttp请求可以分为同步请求和异步请求，其主要流程可以分为如下几个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1 通过OkHttpClient.Builder来构造OkHttpClient对象，这是</div><div class="line">一种建造者模式</div><div class="line">2 通过OkHttpClient.newcall()来创建一个realCall，newcall()</div><div class="line">需要传入Request对象</div><div class="line">3 通过Disptacher来分发请求，这里分为同步和异步的请求，同步请求会</div><div class="line">阻塞当前线程，异步请求则是将请求交给线程池中进行。</div><div class="line">4 通过一系列的Interceptor来处理请求和响应,这里使用了责任链模式</div><div class="line">5 返回Response</div></pre></td></tr></table></figure>
+<p><strong>博客大纲:</strong></p>
+<p>  (1)同步和异步请求</p>
+<p>  (2)拦截器</p>
+<p>  (3)连接重试和恢复</p>
+<p>  (4)缓存</p>
+<h2 id="同步和异步请求"><a href="#同步和异步请求" class="headerlink" title="同步和异步请求"></a>同步和异步请求</h2><h3 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h3><h3 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h3>
       
     </div>
 
@@ -397,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -440,6 +480,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步和异步请求"><span class="nav-number">2.</span> <span class="nav-text">同步和异步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步请求"><span class="nav-number">2.1.</span> <span class="nav-text">同步请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步请求"><span class="nav-number">2.2.</span> <span class="nav-text">异步请求</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
