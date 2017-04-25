@@ -348,10 +348,8 @@
 <h3 id="2-2-mapping文件"><a href="#2-2-mapping文件" class="headerlink" title="2.2 mapping文件"></a>2.2 mapping文件</h3><h2 id="三：资源混淆"><a href="#三：资源混淆" class="headerlink" title="三：资源混淆"></a>三：资源混淆</h2><p>上面介绍的混淆仅仅针对Java代码进行混淆，而不能对资源文件进行混淆，资源文件是指：anim、drawable、layout、menu、values等等。</p>
 <h3 id="3-1-背景知识"><a href="#3-1-背景知识" class="headerlink" title="3.1 背景知识"></a>3.1 背景知识</h3><h4 id="3-1-1-Android资源的编译和打包过程简介"><a href="#3-1-1-Android资源的编译和打包过程简介" class="headerlink" title="3.1.1 Android资源的编译和打包过程简介"></a>3.1.1 Android资源的编译和打包过程简介</h4><p>这些资源文件是通过Android资源打包工具aapt（Android Asset Package Tool）打包到APK文件里面的。在打包之前，大部分文本格式的XML资源文件还会被编译成二进制格式的XML资源文件。<br>具体流程可以参照，本文只给出一个大致的流程介绍。<br><a href="http://blog.csdn.net/luoshengyang/article/details/8744683" target="_blank" rel="external">Android应用程序资源的编译和打包过程分析</a>  </p>
 <ul>
-<li><p>解析AndroidManifest.xml: 获取包名。</p>
-</li>
-<li><p>添加被引用资源包: apk中至少会有两个资源包：apk本身的，系统通用资源包有一些系统资源如android:orientation等。</p>
-</li>
+<li>解析AndroidManifest.xml: 获取包名。  </li>
+<li>添加被引用资源包: apk中至少会有两个资源包：apk本身的，系统通用资源包有一些系统资源如android:orientation等。  </li>
 <li>收集资源文件：Package、Type、Config。<br>Package: 资源所属包名<br>Type: 资源类型; anim、drawable、layout、menu、values.<br>Config: 资源配置：hdpi，xhdpi，zh_rCN , land。分辨率和语言等有18个维度.<br>资源ID 最高字节表示Package ID，次高字节表示Type ID，最低两字节表示Entry ID。</li>
 <li>将收集到的资源增加到资源表</li>
 <li>编译values类资源</li>
