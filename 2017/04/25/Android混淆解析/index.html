@@ -84,24 +84,24 @@
 
 
 
-<meta name="description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 
+<meta name="description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 压缩、优化、删除代码；
 混淆APK build.gradle中minifyEnabled的值是false，这里我们只需要把值改成true,打出来的APK包就会是混淆过的了。
-1234release">
+1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android混淆解析">
 <meta property="og:url" content="http://yoursite.com/2017/04/25/Android混淆解析/index.html">
 <meta property="og:site_name" content="shuixingge">
-<meta property="og:description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 
+<meta property="og:description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 压缩、优化、删除代码；
 混淆APK build.gradle中minifyEnabled的值是false，这里我们只需要把值改成true,打出来的APK包就会是混淆过的了。
-1234release">
+1">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/460624-6d8a8c9a6bc1ef70.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/460624-5baf1bd4f6cfd6fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-25T13:31:17.000Z">
+<meta property="og:updated_time" content="2017-04-26T11:20:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android混淆解析">
-<meta name="twitter:description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 
+<meta name="twitter:description" content="一：混淆的作用1.1 作用 混淆  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 压缩、优化、删除代码；
 混淆APK build.gradle中minifyEnabled的值是false，这里我们只需要把值改成true,打出来的APK包就会是混淆过的了。
-1234release">
+1">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/460624-6d8a8c9a6bc1ef70.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -324,7 +324,7 @@
       
 
       
-        <h2 id="一：混淆的作用"><a href="#一：混淆的作用" class="headerlink" title="一：混淆的作用"></a>一：混淆的作用</h2><h3 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h3><p> <strong>混淆</strong>  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 </p>
+        <h2 id="一：混淆的作用"><a href="#一：混淆的作用" class="headerlink" title="一：混淆的作用"></a>一：混淆的作用</h2><h3 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1 作用"></a>1.1 作用</h3><p> <strong>混淆</strong>  并不是让代码无法被反编译，而是将代码中的类、方法、变量等信息进行重命名，把它们改成一些毫无意义的名字。混淆代码可以在不影响程序正常运行的前提下让破解者很头疼，从而大大提升了程序的安全性。 压缩、优化、删除代码；</p>
 <p><strong>混淆APK</strong> build.gradle中minifyEnabled的值是false，这里我们只需要把值改成true,打出来的APK包就会是混淆过的了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">release &#123; </div><div class="line">  minifyEnabled true</div><div class="line">  proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;),  &apos;proguard-rules.pro&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中minifyEnabled用于设置是否启用混淆，proguardFiles用于选定混淆配置文件。注意这里是在release闭包内进行配置的，因此只有打出正式版的APK才会进行混淆，Debug版的APK是不会混淆的。</p>
@@ -351,7 +351,8 @@
 <p>不管这个类有没有native的方法，那么这个类不会被混淆  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-keep class * &#123;</div><div class="line">    native &lt;methods&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>proguard-rules.pro：</strong><br>任何一个Android Studio项目在app模块目录下都有一个proguard-rules.pro文件，这个文件就是用于让我们编写只适用于当前项目的混淆规则的</p>
-<h3 id="2-2-mapping文件"><a href="#2-2-mapping文件" class="headerlink" title="2.2 mapping文件"></a>2.2 mapping文件</h3><h2 id="三：资源混淆"><a href="#三：资源混淆" class="headerlink" title="三：资源混淆"></a>三：资源混淆</h2><p>上面介绍的混淆仅仅针对Java代码进行混淆，而不能对资源文件进行混淆，资源文件是指：anim、drawable、layout、menu、values等等。</p>
+<h3 id="2-2-mapping文件"><a href="#2-2-mapping文件" class="headerlink" title="2.2 mapping文件"></a>2.2 mapping文件</h3><p>mapping.txt 列出了原始的类，方法和字段名与混淆后代码间的映射。mapping目录在 \app\build\outputs\mapping.txt</p>
+<h2 id="三：资源混淆"><a href="#三：资源混淆" class="headerlink" title="三：资源混淆"></a>三：资源混淆</h2><p>上面介绍的混淆仅仅针对Java代码进行混淆，而不能对资源文件进行混淆，资源文件是指：anim、drawable、layout、menu、values等等。</p>
 <h3 id="3-1-背景知识"><a href="#3-1-背景知识" class="headerlink" title="3.1 背景知识"></a>3.1 背景知识</h3><h4 id="3-1-1-Android资源的编译和打包过程简介"><a href="#3-1-1-Android资源的编译和打包过程简介" class="headerlink" title="3.1.1 Android资源的编译和打包过程简介"></a>3.1.1 Android资源的编译和打包过程简介</h4><p>这些资源文件是通过Android资源打包工具aapt（Android Asset Package Tool）打包到APK文件里面的。在打包之前，大部分文本格式的XML资源文件还会被编译成二进制格式的XML资源文件。<br>具体流程可以参照，本文只给出一个大致的流程介绍。<br><a href="http://blog.csdn.net/luoshengyang/article/details/8744683" target="_blank" rel="external">Android应用程序资源的编译和打包过程分析</a>  </p>
 <ul>
 <li>解析AndroidManifest.xml: 获取包名。  </li>
